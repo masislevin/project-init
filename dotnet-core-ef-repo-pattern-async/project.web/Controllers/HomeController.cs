@@ -4,18 +4,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using project.web.Core.Repos.Interfaces;
 using project.web.Models;
+using Serilog;
 
 namespace project.web.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ILogger _logger;
+        private readonly ISampleRepo _sampleRepo;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger logger, ISampleRepo sampleRepo)
         {
             _logger = logger;
+            _sampleRepo = sampleRepo;
         }
 
         public IActionResult Index()

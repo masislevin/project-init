@@ -5,9 +5,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using project.web.Core.Context;
+using project.web.Core.Entities.Identity;
+using project.web.Core.Repos;
+using project.web.Core.Repos.Interfaces;
+using Serilog;
+using static project.web.Core.Constants;
 
 namespace project.web
 {
@@ -23,6 +31,29 @@ namespace project.web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            /// Context DI
+            services.AddDbContext<DatabaseContext>(options =>
+            {
+                options.UseLazyLoadingProxies();
+                options.UseSqlServer(Configuration.GetConnectionString(DatabaseConstants.CONN_STRING_NAME),
+                    builder => { builder.MigrationsAssembly(typeof(DatabaseContext).Assembly.ToString()); });
+            });
+
+            /// Identity DI
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => 
+            {
+                /// TODO : Add identity options
+            })
+                .AddEntityFrameworkStores<DatabaseContext>()
+                .AddDefaultTokenProviders();
+
+            /// Serilog
+            services.AddSingleton(Log.Logger);
+
+            /// Repositories DI - Core
+            services.AddScoped(typeof(IBaseRepo<>), typeof(BaseRepo<>));
+            services.AddScoped<ISampleRepo, SampleRepo>();
+
             services.AddControllersWithViews();
         }
 

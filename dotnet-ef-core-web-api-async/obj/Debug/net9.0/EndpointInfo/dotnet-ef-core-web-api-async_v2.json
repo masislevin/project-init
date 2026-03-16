@@ -1,0 +1,61 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Test API",
+    "description": "A robust API with JWT Auth and URI Versioning.",
+    "contact": {
+      "name": "Dev Team",
+      "email": "dev@example.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    },
+    "version": "2.0"
+  },
+  "paths": {
+    "/api/v2/Users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Retrieves the details for the current authenticated user.",
+        "description": "This endpoint is part of the V2 transition. \r\nIt returns a greeting message along with the identity name extracted from the JWT token.",
+        "responses": {
+          "200": {
+            "description": "Returns the user identity details successfully.",
+            "content": {
+              "application/json": {
+                "schema": { }
+              }
+            }
+          },
+          "401": {
+            "description": "If the JWT token is missing, expired, or invalid."
+          },
+          "404": {
+            "description": "If the user resource could not be found."
+          },
+          "500": {
+            "description": "If there was an internal server error processing the request."
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
+}

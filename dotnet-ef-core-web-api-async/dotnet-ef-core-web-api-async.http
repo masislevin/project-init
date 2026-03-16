@@ -1,0 +1,6 @@
+@dotnet_ef_core_web_api_async_HostAddress = http://localhost:5088
+
+GET {{dotnet_ef_core_web_api_async_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

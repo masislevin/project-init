@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>dotnet-ef-core-web-api-async</name>
+    </assembly>
+    <members>
+        <member name="T:dotnet_ef_core_web_api_async.Controllers.AuthController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dotnet_ef_core_web_api_async.Controllers.AuthController.GetAccessToken">
+            <summary>
+            FOR TESTING ONLY
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:dotnet_ef_core_web_api_async.Controllers.V1.UsersController.Get">
+            <summary>
+            Retrieves the details for the current authenticated user.
+            </summary>
+            <remarks>
+            This endpoint is part of the V2 transition. 
+            It returns a greeting message along with the identity name extracted from the JWT token.
+            </remarks>
+            <returns>A JSON object containing a message and the user's name.</returns>
+            <response code="200">Returns the user identity details successfully.</response>
+            <response code="401">If the JWT token is missing, expired, or invalid.</response>
+            <response code="404">If the user resource could not be found.</response>
+            <response code="500">If there was an internal server error processing the request.</response>
+        </member>
+        <member name="T:dotnet_ef_core_web_api_async.Controllers.V2.UsersController">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:dotnet_ef_core_web_api_async.Controllers.V2.UsersController.Get">
+            <summary>
+            Retrieves the details for the current authenticated user.
+            </summary>
+            <remarks>
+            This endpoint is part of the V2 transition. 
+            It returns a greeting message along with the identity name extracted from the JWT token.
+            </remarks>
+            <returns>A JSON object containing a message and the user's name.</returns>
+            <response code="200">Returns the user identity details successfully.</response>
+            <response code="401">If the JWT token is missing, expired, or invalid.</response>
+            <response code="404">If the user resource could not be found.</response>
+            <response code="500">If there was an internal server error processing the request.</response>
+        </member>
+    </members>
+</doc>
